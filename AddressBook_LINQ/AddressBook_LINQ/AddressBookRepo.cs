@@ -27,6 +27,13 @@ namespace AddressBook_LINQ
             dataTable.Rows.Add("Rahul", "Verma", "Hazaratganj", "Lucknow", "Uttar Pradesh", 413555, 8886673344, "rahul22@gmail.com");           
         }
 
+        public void AddContactDetails(ContactModel contact)
+        {
+            dataTable.Rows.Add(contact.FirstName, contact.LastName, contact.Address, contact.City,
+            contact.State, contact.ZipCode, contact.PhoneNumber, contact.Email);
+            Console.WriteLine("Contact added successfully!!");
+        }
+
         public void DisplayDetails()
         {
             foreach (var table in dataTable.AsEnumerable())
@@ -39,6 +46,21 @@ namespace AddressBook_LINQ
                 Console.WriteLine("ZipCode:-" + table.Field<int>("ZipCode"));
                 Console.WriteLine("PhoneNumber:-" + table.Field<long>("PhoneNumber"));
                 Console.WriteLine("Email:-" + table.Field<string>("Email"));
+            }
+        }
+
+        public void EditContactByName(ContactModel contact)
+        {
+            var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("FirstName") == contact.FirstName).First();
+            if (recordData != null)
+            {
+                recordData.SetField("LastName", contact.LastName);
+                recordData.SetField("Address", contact.Address);
+                recordData.SetField("City", contact.City);
+                recordData.SetField("State", contact.State);
+                recordData.SetField("ZipCode", contact.ZipCode);
+                recordData.SetField("PhoneNumber", contact.PhoneNumber);
+                recordData.SetField("Email", contact.Email);
             }
         }
     }
