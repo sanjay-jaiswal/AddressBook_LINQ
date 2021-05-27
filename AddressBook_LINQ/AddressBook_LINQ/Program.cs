@@ -15,7 +15,7 @@ namespace AddressBook_LINQ
 
             while (true)
             {
-                Console.WriteLine("\n 1.Display \n 2.Add Contact \n 3.Edit Contact  \n 4. Exit");
+                Console.WriteLine("\n 1.Display \n 2.Add Contact \n 3.Edit Contact \n 4.Delete Contact  \n 5. Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -63,6 +63,11 @@ namespace AddressBook_LINQ
                             addressBookRepo.EditContactByName(contact);
                             break;
                         case 4:
+                            Console.WriteLine("Enter the first name = ");
+                            contact.FirstName = Console.ReadLine();
+                            addressBookRepo.DeleteContactByName(contact);
+                            break;
+                        case 5:
                             Environment.Exit(0);
                             break;
                         default:

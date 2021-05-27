@@ -63,5 +63,15 @@ namespace AddressBook_LINQ
                 recordData.SetField("Email", contact.Email);
             }
         }
+
+        public void DeleteContactByName(ContactModel contact)
+        {
+            var recordData = dataTable.AsEnumerable().Where(data => data.Field<string>("FirstName") == contact.FirstName).First();
+            if (recordData != null)
+            {
+                recordData.Delete();
+                Console.WriteLine("Contact deleted successfully!!");
+            }
+        }
     }
 }
