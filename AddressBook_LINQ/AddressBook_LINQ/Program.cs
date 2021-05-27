@@ -10,6 +10,7 @@ namespace AddressBook_LINQ
 
             AddressBookRepo addressBook = new AddressBookRepo();
             addressBook.CreateTable();
+            addressBook.DisplayDetails();
         }
     }
 }
