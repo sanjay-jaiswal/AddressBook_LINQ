@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 
 namespace AddressBook_LINQ
 {
@@ -13,9 +14,11 @@ namespace AddressBook_LINQ
             addressBookRepo.DisplayDetails();
             ContactModel contact = new ContactModel();
 
+            //DataTable table = addressBookRepo.AddContactDetails();
+
             while (true)
             {
-                Console.WriteLine("\n 1.Display \n 2.Add Contact \n 3.Edit Contact \n 4.Delete Contact  \n 5. Exit");
+                Console.WriteLine("\n 1.Display \n 2.Add Contact \n 3.Edit Contact \n 4.Delete Contact \n 5.Find by City \n 6.Find By State \n 7. Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -63,11 +66,21 @@ namespace AddressBook_LINQ
                             addressBookRepo.EditContactByName(contact);
                             break;
                         case 4:
-                            Console.WriteLine("Enter the first name = ");
+                            Console.WriteLine("Please enter your first name : ");
                             contact.FirstName = Console.ReadLine();
                             addressBookRepo.DeleteContactByName(contact);
                             break;
                         case 5:
+                            Console.WriteLine("Enter City");
+                            string city = Console.ReadLine();
+                            addressBookRepo.RetrieveContactsByCity(city);
+                            break;
+                        case 6:
+                            Console.WriteLine("Enter State");
+                            string state = Console.ReadLine();
+                            addressBookRepo.RetrieveContactsByState(state);
+                            break;
+                        case 7:
                             Environment.Exit(0);
                             break;
                         default:

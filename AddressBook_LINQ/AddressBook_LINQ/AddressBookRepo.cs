@@ -73,5 +73,30 @@ namespace AddressBook_LINQ
                 Console.WriteLine("Contact deleted successfully!!");
             }
         }
+
+        public void RetrieveContactsByCity(string city)
+        {
+            var cityResults = dataTable.AsEnumerable().Where(dr => dr.Field<string>("City") == city);
+            foreach (DataRow row in cityResults)
+            {
+                foreach (DataColumn col in dataTable.Columns)
+                {
+                    Console.Write(row[col] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        public void RetrieveContactsByState(string state)
+        {
+            var stateResults = dataTable.AsEnumerable().Where(dr => dr.Field<string>("State") == state);
+            foreach (DataRow row in stateResults)
+            {
+                foreach (DataColumn col in dataTable.Columns)
+                {
+                    Console.Write(row[col] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }
