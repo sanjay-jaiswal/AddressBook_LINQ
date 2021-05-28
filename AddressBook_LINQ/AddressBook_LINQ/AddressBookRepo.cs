@@ -32,8 +32,8 @@ namespace AddressBook_LINQ
         public void AddContactDetails(ContactModel contact)
         {
             dataTable.Rows.Add(contact.FirstName, contact.LastName, contact.Address, contact.City,
-            contact.State, contact.ZipCode, contact.PhoneNumber, contact.Email);
-            Console.WriteLine("Contact added successfully!!");
+            contact.State, contact.ZipCode, contact.PhoneNumber, contact.Email, contact.AddressBookName, contact.AddressBookType);
+            Console.WriteLine("Added contact successfully");
         }
 
         public void DisplayDetails()
@@ -48,6 +48,8 @@ namespace AddressBook_LINQ
                 Console.WriteLine("ZipCode:-" + table.Field<int>("ZipCode"));
                 Console.WriteLine("PhoneNumber:-" + table.Field<long>("PhoneNumber"));
                 Console.WriteLine("Email:-" + table.Field<string>("Email"));
+                Console.WriteLine("AddressBookName:-" + table.Field<string>("AddressBookName"));
+                Console.WriteLine("AddressBookType:-" + table.Field<string>("AddressBookType"));
             }
         }
 
@@ -63,6 +65,8 @@ namespace AddressBook_LINQ
                 recordData.SetField("ZipCode", contact.ZipCode);
                 recordData.SetField("PhoneNumber", contact.PhoneNumber);
                 recordData.SetField("Email", contact.Email);
+                Console.WriteLine("AddressBookName", contact.AddressBookName);
+                Console.WriteLine("AddressBookType", contact.AddressBookType);
             }
         }
 
