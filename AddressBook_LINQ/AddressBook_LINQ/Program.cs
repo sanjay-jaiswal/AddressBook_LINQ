@@ -18,7 +18,7 @@ namespace AddressBook_LINQ
 
             while (true)
             {
-                Console.WriteLine("\n 1.Display \n 2.Add Contact \n 3.Edit Contact \n 4.Delete Contact \n 5.Find by City \n 6.Find By State \n 7.Count By State And City \n 8. Exit");
+                Console.WriteLine("\n 1.Display \n 2.Add Contact \n 3.Edit Contact \n 4.Delete Contact \n 5.Find by City \n 6.Find By State \n 7.Count By State And City \n 8.Sort Person By City \n 9. Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 try
                 {
@@ -84,6 +84,11 @@ namespace AddressBook_LINQ
                             addressBookRepo.CountByCityAndState();
                             break;
                         case 8:
+                            Console.WriteLine("Enter the city for sorting = ");
+                            contact.City = Console.ReadLine();
+                            addressBookRepo.sortContactAlphabeticallyForGivenCity(contact);
+                            break;
+                        case 9:
                             Environment.Exit(0);
                             break;
                         default:

@@ -114,5 +114,21 @@ namespace AddressBook_LINQ
                 Console.WriteLine(row.City + "\t" + row.State + "\t" + row.Count);
             }
         }
+
+        public void sortContactAlphabeticallyForGivenCity(ContactModel contact)
+        {
+            var records = dataTable.AsEnumerable().Where(x => x.Field<string>("City") == contact.City).OrderBy(x => x.Field<string>("FirstName")).ThenBy(x => x.Field<string>("LastName"));
+            foreach (var table in records)
+            {
+                Console.WriteLine("\nFirstName:-" + table.Field<string>("FirstName"));
+                Console.WriteLine("LastName:-" + table.Field<string>("LastName"));
+                Console.WriteLine("Address:-" + table.Field<string>("Address"));
+                Console.WriteLine("City:-" + table.Field<string>("City"));
+                Console.WriteLine("State:-" + table.Field<string>("State"));
+                Console.WriteLine("ZipCode:-" + table.Field<int>("ZipCode"));
+                Console.WriteLine("PhoneNumber:-" + table.Field<long>("PhoneNumber"));
+                Console.WriteLine("Email:-" + table.Field<string>("Email"));
+            }
+        }
     }
 }
