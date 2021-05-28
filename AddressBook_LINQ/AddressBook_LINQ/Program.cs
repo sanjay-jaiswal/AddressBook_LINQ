@@ -84,9 +84,9 @@ namespace AddressBook_LINQ
                             addressBookRepo.CountByCityAndState();
                             break;
                         case 8:
-                            Console.WriteLine("Enter the city for sorting = ");
+                            Console.WriteLine("Enter the city for sorting ");
                             contact.City = Console.ReadLine();
-                            addressBookRepo.sortContactAlphabeticallyForGivenCity(contact);
+                            addressBookRepo.SortByAlphabeticallyForGivenCity(contact);
                             break;
                         case 9:
                             Environment.Exit(0);

@@ -115,7 +115,7 @@ namespace AddressBook_LINQ
             }
         }
 
-        public void sortContactAlphabeticallyForGivenCity(ContactModel contact)
+        public void SortByAlphabeticallyForGivenCity(ContactModel contact)
         {
             var records = dataTable.AsEnumerable().Where(x => x.Field<string>("City") == contact.City).OrderBy(x => x.Field<string>("FirstName")).ThenBy(x => x.Field<string>("LastName"));
             foreach (var table in records)
@@ -128,6 +128,8 @@ namespace AddressBook_LINQ
                 Console.WriteLine("ZipCode:-" + table.Field<int>("ZipCode"));
                 Console.WriteLine("PhoneNumber:-" + table.Field<long>("PhoneNumber"));
                 Console.WriteLine("Email:-" + table.Field<string>("Email"));
+                Console.WriteLine("AddressBookName:-" + table.Field<string>("AddressBookName"));
+                Console.WriteLine("AddressBookType:-" + table.Field<string>("AddressBookType"));
             }
         }
     }
