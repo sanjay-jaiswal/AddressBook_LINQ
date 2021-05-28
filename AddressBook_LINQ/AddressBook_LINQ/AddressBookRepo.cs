@@ -19,12 +19,14 @@ namespace AddressBook_LINQ
             dataTable.Columns.Add("ZipCode", typeof(int));
             dataTable.Columns.Add("PhoneNumber", typeof(long));
             dataTable.Columns.Add("Email", typeof(string));
+            dataTable.Columns.Add("AddressBookName", typeof(string));
+            dataTable.Columns.Add("AddressBookType", typeof(string));
 
-            dataTable.Rows.Add("Sanju", "Jaiswal", "Madgaon", "Margao", "Goa", 403701, 7020665544, "sanju22@gmail.com");
-            dataTable.Rows.Add("Vivek", "Singh", "Pune", "Pune", "Maharashtra", 411044, 8877665566, "viv12@gmail.com");
-            dataTable.Rows.Add("Mahesh", "Patil", "Nanded", "Pune", "Maharashtra", 411043, 9988991660, "mahi11@gmail.com");
-            dataTable.Rows.Add("Noman", "Zaheer", "Aligarh", "Aligarh", "Uttar Pradesh", 271233, 7778866554, "noman123@gmail.com");
-            dataTable.Rows.Add("Rahul", "Verma", "Hazaratganj", "Lucknow", "Uttar Pradesh", 413555, 8886673344, "rahul22@gmail.com");           
+            dataTable.Rows.Add("Sanju", "Jaiswal", "Madgaon", "Margao", "Goa", 403701, 7020665544, "sanju22@gmail.com","FamilyAddressBook","Family");
+            dataTable.Rows.Add("Vivek", "Singh", "Pune", "Pune", "Maharashtra", 411044, 8877665566, "viv12@gmail.com", "FamilyAddressBook", "Family");
+            dataTable.Rows.Add("Mahesh", "Patil", "Nanded", "Pune", "Maharashtra", 411043, 9988991660, "mahi11@gmail.com", "FriendsAddressBook", "Friends");
+            dataTable.Rows.Add("Noman", "Zaheer", "Aligarh", "Aligarh", "Uttar Pradesh", 271233, 7778866554, "noman123@gmail.com", "PersonalAddressBook", "Personal");
+            dataTable.Rows.Add("Rahul", "Verma", "Hazaratganj", "Lucknow", "Uttar Pradesh", 413555, 8886673344, "rahul22@gmail.com", "FriendsAddressBook", "Friends");           
         }
 
         public void AddContactDetails(ContactModel contact)
@@ -130,6 +132,20 @@ namespace AddressBook_LINQ
                 Console.WriteLine("Email:-" + table.Field<string>("Email"));
                 Console.WriteLine("AddressBookName:-" + table.Field<string>("AddressBookName"));
                 Console.WriteLine("AddressBookType:-" + table.Field<string>("AddressBookType"));
+            }
+        }
+
+        public void CountByAddressBookType()
+        {
+            var countData = dataTable.AsEnumerable().GroupBy(BookType => BookType.Field<string>("AddressBookType")).
+                Select(BookType => new
+                {
+                    BookType = BookType.Key,
+                    BookTypeCount = BookType.Count()
+                });
+            foreach (var list in countData)
+            {
+                Console.WriteLine("AddressBookType =" + list.BookType + " , " + "AddressBookCount = " + list.BookTypeCount);
             }
         }
     }
